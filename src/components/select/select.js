@@ -1457,6 +1457,28 @@ function SelectProvider($$interimElementProvider) {
     /**
      * Calculate the
      */
+
+    function getWindowSize() {
+      var el     = document.documentElement || document.getElementsByTagName('body')[0];
+      var width  = window.innerWidth || e.clientWidth;
+      var height = window.innerHeight || e.clientHeight;
+
+      return {width: width, height: height};
+    }
+
+    function getParentRect() {
+      var windowSize = getWindowSize();
+
+      return {
+        top:    document.body.scrollTop,
+        bottom: document.body.scrollTop + windowSize.height,
+        left:   0,
+        right:  windowSize.width,
+        height: windowSize.height,
+        width:  windowSize.width
+      };
+    }
+
     function calculateMenuPositions(scope, element, opts) {
       var
         containerNode = element[0],
@@ -1464,7 +1486,7 @@ function SelectProvider($$interimElementProvider) {
         parentNode = $document[0].body,
         selectNode = opts.selectEl[0],
         contentNode = opts.contentEl[0],
-        parentRect = parentNode.getBoundingClientRect(),
+        parentRect = getParentRect(),
         targetRect = targetNode.getBoundingClientRect(),
         shouldOpenAroundTarget = false,
         bounds = {
