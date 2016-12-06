@@ -490,6 +490,8 @@ md-autocomplete {
 .md-virtual-repeat-container.md-autocomplete-suggestions-container {
   position: absolute;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+  height: 225.5px;
+  max-height: 225.5px;
   z-index: 100; }
 
 .md-virtual-repeat-container.md-not-found {
@@ -1610,13 +1612,9 @@ md-datepicker {
     border: none; }
   ._md-datepicker-floating-label > md-datepicker .md-datepicker-button {
     float: left;
-    margin-top: -12px;
-    top: 9.5px; }
+    margin-top: -2.5px; }
     [dir=rtl] ._md-datepicker-floating-label > md-datepicker .md-datepicker-button {
       float: right; }
-
-._md-datepicker-floating-label .md-input {
-  float: none; }
 
 ._md-datepicker-floating-label._md-datepicker-has-calendar-icon > label:not(.md-no-float):not(.md-container-ignore) {
   right: 18px;

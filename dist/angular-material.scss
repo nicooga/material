@@ -1,12 +1,14 @@
+// Function
+//-- Must be defined before variables
+@function rem($multiplier) {
+  $font-size: 10px;
+  @return $multiplier * $font-size;
+}
+
 // Typography
 // ------------------------------
 $font-family: Roboto, 'Helvetica Neue', sans-serif !default;
 $font-size:   10px !default;
-
-//-- Must be defined before $font-size.
-@function rem($multiplier) {
-  @return $multiplier * $font-size;
-}
 
 $display-4-font-size-base: rem(11.20) !default;
 $display-3-font-size-base: rem(5.600) !default;
@@ -1205,8 +1207,7 @@ input {
     @include layout-for-name($name);
 }
 
-// The default item height is also specified in the JavaScript.
-$md-autocomplete-item-height: 48px !default;
+$autocomplete-option-height: 48px !default;
 
 @keyframes md-autocomplete-list-out {
   0% {
@@ -1409,24 +1410,25 @@ md-autocomplete {
 .md-virtual-repeat-container.md-autocomplete-suggestions-container {
   position: absolute;
   box-shadow: 0 2px 5px rgba(black, 0.25);
+  height: 41px * 5.5;
+  max-height: 41px * 5.5;
   z-index: $z-index-tooltip;
 }
 
 .md-virtual-repeat-container.md-not-found {
-  height: $md-autocomplete-item-height;
+  height: 48px;
 }
 
 .md-autocomplete-suggestions {
   margin: 0;
   list-style: none;
   padding: 0;
-
   li {
     font-size: 14px;
     overflow: hidden;
     padding: 0 15px;
-    line-height: $md-autocomplete-item-height;
-    height: $md-autocomplete-item-height;
+    line-height: $autocomplete-option-height;
+    height: $autocomplete-option-height;
     transition: background 0.15s linear;
     margin: 0;
     white-space: nowrap;
@@ -2718,16 +2720,10 @@ md-datepicker {
     }
 
     .md-datepicker-button {
-      // Prevents the button from wrapping around, as well as it pushing
-      // down the error messages more than they should be.
+      // Prevents the button from wrapping around.
       @include rtl(float, left, right);
-      margin-top: $button-left-right-padding * -2;
-      top: $button-left-right-padding * 2 - $md-datepicker-border-bottom-gap / 2;
+      margin-top: -$md-datepicker-border-bottom-gap / 2;
     }
-  }
-
-  .md-input {
-    float: none;
   }
 
   &._md-datepicker-has-calendar-icon {
@@ -2852,7 +2848,7 @@ md-datepicker {
 }
 
 // Need crazy specificity to override .md-button.md-icon-button.
-// Only apply this high specificity to the property we need to override.
+// Only apply this high specifiy to the property we need to override.
 .md-datepicker-triangle-button.md-button.md-icon-button {
   height: $md-datepicker-triangle-button-width;
   width: $md-datepicker-triangle-button-width;
